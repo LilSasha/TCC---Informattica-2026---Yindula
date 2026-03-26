@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar os Dados </title>
+    <link rel="stylesheet" href="Style-Agendar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="icon" href="IMG/Icon.png">
+</head>
+
+<body>
+
+    <section id="container">
+        
+        <!-- MENU -->
+        <section id="menu">
+            <br>
+            <ul>
+                <li> <label class="circle circle-check"><i class="fa-solid fa-check"></i></label> <span>Serviço</span></li>
+                <li> <label class="circle circle-check"><i class="fa-solid fa-check"></i></label> <span>Data</span></li>
+                <li> <label class="circle circle-check"><i class="fa-solid fa-check"></i></label> <span>Horário</span></li>
+                <li> <label class="circle circle-check"><i class="fa-solid fa-check"></i></label> <span >Informações</span></li>
+                <li> <label class="circle circle-check"><i class="fa-solid fa-check"></i></label> <span class="actual">Confirmar</span></li>
+            </ul>
+
+            <div class="link-bottom">
+                <h5>Precisa de ajuda?</h5>
+                <a href="suporte.html">Fale conosco</a>
+            </div>
+        </section>
+
+        <!-- FORMULÁRIO -->
+
+        <section id="formulario">
+
+            <div class="title">
+                <h4>Detalhes da Agendamento</h4>
+            </div>
+
+            <div class="dados-form">
+
+                <div class="form-selecionados">
+                    <div class="dados-pessoais">
+                        <p class="nome">Nome:</p>
+                        <p class="contacto">Contacto:</p>
+                        <p class="email">Email:</p>
+                        <p class="servico">Serviço:</p>
+                        <p class="data-hora">Data:</p>
+                        <p class="data-hora">Hora:</p>
+                        <p class="posto">POSTO:</p>
+                    </div>
+
+                    <div class="dados-input">
+                        <p class="nome" id="resumoNome">João Silva</p>
+                        <p class="contacto" id="resumoContacto">912345678</p>
+                        <p class="email" id="resumoEmail">likmjdj@gmail.com</p>
+                        <p class="servico" id="resumoServico">Emissão do Bilhete de Identidade</p>
+                        <p class="data-hora" id="resumoData">15/08/2024</p>
+                        <p class="data-hora" id="resumoHora">10:30</p>
+                        <p class="posto" id="resumoPosto">POSTO DA RUA 10</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="btn">
+                <a href="agendado.html" class="btn-2">Confirmar</a>
+            </div>
+        </section>
+    </section>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+    // 1. Resgatar os dados das chaves que definimos nos passos anteriores
+    const servico = sessionStorage.getItem('servico_nome');
+    const data = sessionStorage.getItem('data_selecionada');
+    const hora = sessionStorage.getItem('yindula_hora');
+    
+    // O objeto de dados pessoais (Nome, Tel, Posto) que salvamos como String JSON
+    const dadosCidadaoRaw = sessionStorage.getItem('yindula_dados');
+    const dadosCidadao = dadosCidadaoRaw ? JSON.parse(dadosCidadaoRaw) : null;
+
+    // 2. Elementos do HTML para exibição
+    const resumoNome = document.getElementById('resumoNome');
+    const resumoContacto = document.getElementById('resumoContacto');
+    const resumoEmail = document.getElementById('resumoEmail');
+    const resumoServico = document.getElementById('resumoServico');
+    const resumoData = document.getElementById('resumoData');
+    const resumoHora = document.getElementById('resumoHora');
+    const resumoPosto = document.getElementById('resumoPosto');
+
+    // 3. Verificar se os dados existem e preencher a tela
+    if (dadosCidadao && data && hora && servico) {
+        
+        // Formatar data de YYYY-MM-DD para DD/MM/YYYY
+        const dataFormatada = data.split('-').reverse().join('/');
+
+        resumoNome.textContent = dadosCidadao.nomeCompleto;
+        resumoContacto.textContent = dadosCidadao.telefone;
+        resumoEmail.textContent = dadosCidadao.email;
+        resumoServico.textContent = servico;
+        resumoData.textContent = dataFormatada;
+        resumoHora.textContent = hora;
+        resumoPosto.textContent = dadosCidadao.postoNome;
+
+    } else {
+        // Se algo falhou, avisa o usuário
+        alert("Ops! Alguns dados estão faltando. Vamos voltar ao início.");
+        window.location.href = "Index-Agendar.html"; 
+    }
+
+    // 4. Lógica do botão confirmar (Simulação antes do Java)
+    const btnConfirmar = document.querySelector('.btn-2');
+    btnConfirmar.addEventListener('click', (e) => {
+        e.preventDefault(); // Trava para simular o envio
+        
+        btnConfirmar.textContent = "A processar...";
+        btnConfirmar.style.pointerEvents = "none";
+        btnConfirmar.style.opacity = "0.7";
+
+        // Simula o tempo de resposta do servidor Java (1.5 segundos)
+        setTimeout(() => {
+            window.location.href = "agendado.html";
+        }, 1500);
+    });
+});
+</script>
+
+
+</body>
+
+</html>

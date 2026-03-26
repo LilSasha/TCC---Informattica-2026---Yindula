@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='https://pro.fontawesome.com/releases/v5.10.0/css/all.css' rel='stylesheet' />
+
+    <title>YUNDULA - ADM</title>
+    <link rel="icon" href="IMG/Icon.png">
+
+    <link rel="stylesheet" href="ADM-Style.css">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+
+<body>
+
+    <section id="menu">
+        <div class="logo">
+            <a href="#">
+                <img src="IMG/Icon.png" alt="Logo Yindula - Painel Administrativo">
+                <h2>YINDULA</h2>
+            </a>
+        </div>
+
+        <div class="itens">
+            <ul>
+                <li><a href="#"><i class="fad fa-chart-pie-alt"></i>Painel Administrativo</a></li>
+                <li><a href="#"><i class="fas fa-globe"></i>Todos</a></li>
+                <li><a href="#"><i class="fas fa-check"></i>Confirmado</a></li>
+                <li><a href="#"><i class="fas fa-spinner"></i>Realizado</a></li>
+                <li><a href="#"><i class="fas fa-times"></i>Cancelado</a></li>
+                <li><a href="loginADM.html" class="log-in"><i class="fas fa-sign-out-alt"></i>Sair</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="interface">
+
+        <div class="navegation">
+
+            <div class="nav-left">
+                <div>
+                    <button id="menu-btn" aria-label="Alternar menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+
+                <div class="search">
+                    <i class="far fa-search"></i>
+                    <form action="#">
+                        <input type="text" placeholder="Pesquisa">
+                    </form>
+                </div>
+            </div>
+
+            <div class="profile">
+                <i class="far fa-bell"></i>
+                <img src="IMG/People/P1.JPG" alt="Foto de Perfil">
+            </div>
+
+        </div>
+
+        <h3 class="i-name">PAINEL DE GESTÃO DE AGENDAMENTOS</h3>
+
+        <div class="value">
+            <div class="val-box">
+                <i class="fas fa-globe"></i>
+                <div class="">
+                    <h3>06</h3>
+                    <span>Todos</span>
+                </div>
+            </div>
+
+            <div class="val-box">
+                <i class="fas fa-check"></i>
+                <div class="">
+                    <h3>02</h3>
+                    <span>Confirmados</span>
+                </div>
+            </div>
+
+            <div class="val-box">
+                <i class="fas fa-spinner "></i>
+                <div class="">
+                    <h3>02</h3>
+                    <span>Realizados</span>
+                </div>
+            </div>
+
+            <div class="val-box">
+                <i class="fas fa-times"></i>
+                <div class="">
+                    <h3>02</h3>
+                    <span>Cancelados</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="board">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="title">Nome</th>
+                        <th class="title">Telefone</th>
+                        <th class="title">Serviço</th>
+                        <th class="title">Status</th>
+                        <th class="title">Data</th>
+                        <th class="title">Hora</th>
+                        <th class="title">Posto</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class="nome">
+                            <h5 class="name-size">Manuel Francisco</h5>
+                        </td>
+                        <td class="contacto">
+                            <p>923 254 748</p>
+                        </td>
+                        <td class="servico">
+                            <h5 class="tipo-servico">Renovação do BI</h5>
+                        </td>
+                        <td class="activo">
+                            <p>Confirmado</p>
+                        </td>
+                        <td>
+                            <p>10.JUN.26</p>
+                        </td>
+                        <td>
+                            14:30
+                        </td>
+                        <td class="role">
+                            <p>Posto da rua 24</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="nome">
+                            <h5 class="name-size">José Daniel</h5>
+                        </td>
+                        <td class="contacto">
+                            <p>923 274 748</p>
+                        </td>
+                        <td class="servico">
+                            <h5 class="tipo-servico">Emisão do BI</h5>
+                        </td>
+                        <td class="activo realizado">
+                            <p>Pendente</p>
+                        </td>
+                        <td>
+                            <p>20.OUT.26</p>
+                        <td>
+                            12:30
+                        </td>
+                         <td class="role">
+                            <p>Posto da Rua 10</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="nome">
+                            <h5 class="name-size">Mariana Andre</h5>
+                        </td>
+                        <td class="contacto">
+                            <p>954 274 748</p>
+                        </td>
+                        <td class="servico">
+                            <h5 class="tipo-servico">Segunda Via do BI</h5>
+                        </td>
+                        <td class="activo cancelado">
+                            <p>Cancelado</p>
+                        </td>
+                        
+                        <td>
+                            <p>20.OUT.26</p>
+                        </td>
+                        <td>
+                            10:30
+                        </td>
+                        <td class="role">
+                            <p>Posto da Rua 01</p>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+
+            // --- 1. TOGGLE DO MENU LATERAL (Abertura/Fechamento) ---
+            $('#menu-btn').on('click', function () {
+                $('#menu').toggleClass('active');
+                $('#interface').toggleClass('menu-opened');
+            });
+
+            // --- 2. FUNCIONALIDADE DE FILTRO DE AGENDAMENTOS (Links e Cartões) ---
+            function filterAppointments(statusText) {
+                $('#interface .board tbody tr').show();
+                if (statusText !== 'Todos' && statusText !== 'Painel Administrativo' && statusText !== 'Sair') {
+                    $('#interface .board tbody tr').each(function () {
+                        var statusCell = $(this).find('td.activo p').text().trim();
+                        if (statusCell !== statusText) {
+                            $(this).hide();
+                        }
+                    });
+                }
+                highlightFilter(statusText);
+            }
+
+            function highlightFilter(activeStatus) {
+                $('.val-box, #menu .itens li').removeClass('active-filter');
+
+                $('.value .val-box').each(function () {
+                    var status = $(this).find('span').text().trim();
+                    if (status === activeStatus) {
+                        $(this).addClass('active-filter');
+                    }
+                });
+
+                $('#menu .itens li').each(function () {
+                    var linkText = $(this).find('a').text().trim();
+                    if (linkText === activeStatus || (activeStatus === 'Todos' && linkText === 'Painel Administrativo')) {
+                        $(this).addClass('active-filter');
+                    }
+                });
+            }
+
+            $('#menu .itens li a').on('click', function (e) {
+                var status = $(this).text().trim();
+                if (status.includes('Sair')) {
+                    return;
+                }
+                e.preventDefault();
+                var filterStatus = (status === 'Painel Administrativo') ? 'Todos' : status;
+                filterAppointments(filterStatus);
+
+                if ($('#menu').hasClass('active')) {
+                    $('#menu').removeClass('active');
+                    $('#interface').removeClass('menu-opened');
+                }
+            });
+
+            $('.value .val-box').on('click', function () {
+                var status = $(this).find('span').text().trim();
+                filterAppointments(status);
+            });
+            filterAppointments('Todos');
+
+
+            // --- 3. FUNCIONALIDADE DE PESQUISA EM TEMPO REAL (Search Bar) ---
+            $('input[placeholder="Pesquisa"]').on('keyup', function () {
+                var searchTerm = $(this).val().toLowerCase();
+
+                $('#interface .board tbody tr').each(function () {
+                    var rowText = $(this).text().toLowerCase();
+
+                    if (rowText.includes(searchTerm)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+
+                $('.val-box, #menu .itens li').removeClass('active-filter');
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>

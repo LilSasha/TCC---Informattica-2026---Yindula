@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados pessoais</title>
+    <link rel="stylesheet" href="Style-Agendar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="icon" href="IMG/Icon.png">
+</head>
+
+<body>
+
+    <section id="container">
+
+        <section id="menu">
+            <br>
+            <ul>
+                <li> <label class="circle circle-check"><i class="fa-solid fa-check"></i></label> <span>Serviço</span></li>
+                <li> <label class="circle circle-check"><i class="fa-solid fa-check"></i></label> <span>Data</span></li>
+                <li> <label class="circle circle-check"><i class="fa-solid fa-check"></i></label> <span>Horário</span></li>
+                <li> <label class="circle">4</label> <span class="actual">Informações</span></li>
+                <li> <label class="circle">5</label> <span>Confirmar</span></li>
+            </ul>
+
+            <div class="link-bottom">
+                <h5>Precisa de ajuda?</h5>
+                <a href="suporte.html">Fale conosco</a>
+            </div>
+        </section>
+
+        <section id="formulario">
+
+            <div class="title">
+                <h4>Preencha os campos abaixo</h4>
+            </div>
+
+            <div class="dados-form">
+                <div class="input-box">
+                    <div class="colunas">
+                        <div class="input-group">
+                            <input type="text" id="primeiroNome" placeholder="Primeiro nome" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="ultimoNome" placeholder="Último nome" required>
+                        </div>
+                    </div>
+
+                    <div class="colunas">
+                        <div class="input-group">
+                            <input type="tel" maxlength="9" id="telefone" placeholder="Telefone" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" id="email" placeholder="E-mail (Opcional)">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-box">
+                        <input type="text" maxlength="14" id="bilhete" placeholder="Nº do BI (Se aplicável)">
+                    </div>
+
+                    <select name="posto" class="input-box" id="posto" required>
+                        <option value="">SELECIONE UM POSTO</option>
+                        <option value="posto1">POSTO DA RUA M</option>
+                        <option value="posto2">POSTO DA RUA 10</option>
+                        <option value="posto3">POSTO DA RUA 24</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="btn">
+                <a class="btn-1" onclick="history.back(); return false;">Voltar</a>
+                <a href="#" id="btnProximoDados" class="btn-2">Próximo</a>
+            </div>
+
+        </section>
+
+        <div id="customAlert" class="modal-alert">
+            <div class="modal-content">
+                <div class="icon-warning">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <h4>Atenção!</h4>
+                <p id="alertMessage">Mensagem de erro aqui.</p>
+                <button onclick="closeAlert()" class="btn-alert">Entendi</button>
+            </div>
+        </div>
+
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnProximo = document.getElementById('btnProximoDados');
+
+            const campos = {
+                pNome: document.getElementById('primeiroNome'),
+                uNome: document.getElementById('ultimoNome'),
+                tel: document.getElementById('telefone'),
+                email: document.getElementById('email'),
+                bi: document.getElementById('bilhete'),
+                posto: document.getElementById('posto')
+            };
+
+            btnProximo.addEventListener('click', (e) => {
+                e.preventDefault(); // Previne o link direto para validar primeiro
+
+                // 1. Validação de campos obrigatórios com Alerta Customizado
+                if (!campos.pNome.value || !campos.uNome.value || !campos.tel.value || !campos.posto.value) {
+                    showAlert("Por favor, preencha todos os campos obrigatórios (Nome, Telefone e Posto).");
+                    return;
+                }
+
+                // 2. Validação de Telefone (9 dígitos)
+                if (campos.tel.value.length < 9) {
+                    showAlert("O número de telefone deve conter 9 dígitos.");
+                    return;
+                }
+
+                // 3. Persistência dos Dados (Incluindo o Serviço vindo da aba 1)
+                const servicoAnterior = sessionStorage.getItem('servico_nome');
+
+                const dadosCidadao = {
+                    nomeCompleto: `${campos.pNome.value} ${campos.uNome.value}`,
+                    telefone: campos.tel.value,
+                    email: campos.email.value || "Não aplicável",
+                    bi: campos.bi.value || "Não Aplicável",
+                    postoNome: campos.posto.options[campos.posto.selectedIndex].text,
+                    servicoNome: servicoAnterior
+                };
+
+                // Salva tudo no balde da sessão
+                sessionStorage.setItem('yindula_dados', JSON.stringify(dadosCidadao));
+
+                // 4. Redireciona para a próxima página após salvar
+                window.location.href = "confirmar.html";
+            });
+
+            // Máscara para o BI ficar sempre em Maiúsculas
+            campos.bi.addEventListener('input', (e) => {
+                e.target.value = e.target.value.toUpperCase();
+            });
+        });
+
+        // Funções do Alerta Customizado
+        function showAlert(mensagem) {
+            const modal = document.getElementById('customAlert');
+            const msg = document.getElementById('alertMessage');
+            if (modal && msg) {
+                msg.innerText = mensagem;
+                modal.style.display = 'flex';
+            }
+        }
+
+        function closeAlert() {
+            const modal = document.getElementById('customAlert');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+        
+    </script>
+
+</body>
+</html>

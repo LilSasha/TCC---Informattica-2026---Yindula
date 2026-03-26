@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yindula - Atender Angola</title>
+    <link rel="icon" href="IMG/Icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="Index-style.css">
+
+</head>
+
+<body>
+
+    <nav>
+        <a href="index1.html"> <img src="IMG/LOGO YINDULA BRANCA.png" alt=""></a>
+        <div class="navegation">
+            <ul>
+                <i id="menu-close-icon" class="fa-regular fa-circle-xmark"></i>
+                <li><a href="index1.html" class="active link">Iniciar</a></li>
+                <li><a href="suporte.html" class="link">Suporte</a></li>
+                <li><a href="sobre.html" class="link">Sobre</a></li>
+                <li class="actual"><a href="contact.html" class="link active">Contacto</a></li>
+            </ul>
+            <i id="menu-btn-icon" class="fas fa-bars "></i>
+        </div>
+    </nav>
+
+    <section id="sobre-home">
+        <h2>Entre em contacto <label> conosco</label></h2>
+    </section>
+
+    <section id="Cadastro">
+        <div class="esquerdo">
+            <div class="phone">
+                <div class="icon"><i class="fas fa-phone"></i></div>
+                <div class="text">
+                    <label>(+244) 934 795 245</label>
+                    <span>Ligue para nós</span>
+                </div>
+            </div>
+            <div class="email">
+                <div class="icon"><i class="fas fa-envelope"></i></div>
+                <div class="text">
+                    <label>yindula@center.com</label>
+                    <span>Envie-nos um email</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="direito">
+            <form action="#" id="contactForm">
+                <div class="mensagem">
+                    <div class="inputs">
+                        <div class="dados">
+                            <input type="text" id="name" placeholder="Seu nome">
+                            <input type="text" id="email" placeholder="Seu email">
+                            <input type="text" id="assunto" placeholder="Assunto">
+                        </div>
+                        <div class="direito">
+                            <div class="text-area">
+                                <textarea id="textarea" class="textarea" placeholder="Mensagem"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn">
+                    <input type="submit" value="Enviar" class="button">
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <div id="customAlert" class="modal-alert">
+        <div class="modal-content">
+            <div id="alertIcon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h4 id="alertTitle">Atenção!</h4>
+            <p id="alertMessage">Mensagem aqui.</p>
+            <button onclick="closeAlert()" class="btn-alert">Entendi</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-col">
+            <a href="#"><img src="IMG/LOGO YINDULA BRANCA.png" class="img-BI" width="150px"></a>
+        </div>
+        <div class="copyright">
+            <p>Copyright &copy; 2025 Todos os direitos reservados | Yindula </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Menu Mobile
+            const menuBtn = document.getElementById('menu-btn-icon');
+            const closeBtn = document.getElementById('menu-close-icon');
+            const navUl = document.querySelector('nav .navegation ul');
+
+            if (menuBtn) menuBtn.onclick = () => navUl.classList.add('active');
+            if (closeBtn) closeBtn.onclick = () => navUl.classList.remove('active');
+
+            // Validação do Formulário
+            const form = document.getElementById('contactForm');
+            if (form) {
+                form.onsubmit = (e) => {
+                    e.preventDefault();
+                    
+                    const nome = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const assunto = document.getElementById('assunto').value.trim();
+                    const msg = document.getElementById('textarea').value.trim();
+
+                    if (!nome || !email || !assunto || !msg) {
+                        showAlert("warning", "Atenção!", "Preencha todos os campos antes de enviar.");
+                        return;
+                    }
+
+                    if (!email.includes('@')) {
+                        showAlert("warning", "E-mail Inválido", "Por favor, insira um e-mail correto.");
+                        return;
+                    }
+
+                    // Sucesso
+                    showAlert("success", "Sucesso!", `Obrigado ${nome}, sua mensagem foi enviada!`);
+                    form.reset();
+                };
+            }
+        });
+
+        // Lógica do Alerta Customizado
+        function showAlert(type, title, message) {
+            const modal = document.getElementById('customAlert');
+            const alertIcon = document.getElementById('alertIcon');
+            const alertTitle = document.getElementById('alertTitle');
+            const alertMessage = document.getElementById('alertMessage');
+
+            alertTitle.innerText = title;
+            alertMessage.innerText = message;
+
+            if (type === "success") {
+                alertIcon.className = "icon-success";
+                alertIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+            } else {
+                alertIcon.className = "icon-warning";
+                alertIcon.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+            }
+
+            modal.style.display = 'flex';
+        }
+
+        function closeAlert() {
+            document.getElementById('customAlert').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

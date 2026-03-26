@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGENDAR</title>
+    <link rel="stylesheet" href="Style-Agendar.css">
+    <link rel="icon" href="IMG/Icon.png">
+</head>
+<body>
+
+    <section id="container">
+
+    <!-- MENU -->
+        <section id="menu">
+            <br>
+            <ul>
+                <li> <label class="circle ">1</i></label><span class="actual">Serviço</span>
+                </li>
+                <li> <label class="circle">2</label> <span>Data</span></li>
+                <li> <label class="circle">3</label> <span>Horário</span></li>
+                <li> <label class="circle">4</label> <span>Informações</span></li>
+                <li> <label class="circle">5</label> <span>Confirmar</span></li>
+            </ul>
+
+            <div class="link-bottom">
+                <h5>Precisa de ajuda?</h5>
+                <a href="suporte.html">Fale conosco</a>
+            </div>
+        </section>
+
+    <!-- FORMULÁRIO -->
+
+        <section id="formulario">
+
+            <div class="title">
+                <p><b>Selecione um serviço</b></p>
+            </div>
+
+            <div class="links-servicos">
+                <a href="#"  class="servico-item" data-id="emissao_bi">Emissão do Bilhete de Identidade</a>
+                <a href="#" class="servico-item" data-id="renovacao_bi">Renovação do Bilhete de Identidade</a>
+                <a href="#" class="servico-item" data-id="segunda_via_bi">Segunda Via do Bilhete de Identidade</a>
+            </div>
+
+            <div class="bottom">
+                <div class="btn">
+                    <a href="data.html" id="btnProximo" class="btn-2">Próximo</a>
+                </div>
+            </div>
+
+        </section>
+    </section>
+    
+    <script>
+        
+        /**
+ * YINDULA - AGENDAMENTO (PASSO 1: SERVIÇO)
+ * Focado em: Seleção de serviço e persistência de dados
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+    const servicoItems = document.querySelectorAll('.servico-item');
+    const btnProximo = document.getElementById('btnProximo');
+    
+    // 1. Estado Inicial: Botão desativado
+    desativarBotao();
+
+    servicoItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // 2. Visual: Destaca o item selecionado
+            servicoItems.forEach(i => i.classList.remove('selecionado'));
+            item.classList.add('selecionado');
+
+            // 3. Dados: Captura ID e Nome
+            const idServico = item.getAttribute('data-id');
+            const nomeServico = item.textContent.trim();
+
+            // 4. Persistência: Salva no SessionStorage (Dura enquanto o navegador estiver aberto)
+            sessionStorage.setItem('servico_id', idServico);
+            sessionStorage.setItem('servico_nome', nomeServico);
+
+            // 5. Ativa o botão
+            ativarBotao();
+            console.log(`Selecionado: ${nomeServico}`);
+        });
+    });
+
+    function desativarBotao() {
+        btnProximo.style.pointerEvents = 'none';
+        btnProximo.style.opacity = '0.5';
+    }
+
+    function ativarBotao() {
+        btnProximo.style.pointerEvents = 'auto';
+        btnProximo.style.opacity = '1';
+    }
+
+    // 6. Prevenção de erro ao clicar em próximo
+    btnProximo.addEventListener('click', (e) => {
+        if (!sessionStorage.getItem('servico_id')) {
+            e.preventDefault();
+            alert("Por favor, selecione um serviço para continuar.");
+        }
+    });
+});
+
+    </script>
+
+</body>
+</html>

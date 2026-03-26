@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGENDAR | Hora</title>
+    <link rel="stylesheet" href="Style-Agendar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="icon" href="IMG/Icon.png">
+</head>
+
+<body>
+
+
+    <section id="container">
+
+        <!-- MENU -->
+        <section id="menu">
+            <br>
+            <ul>
+                <li> <label class="circle circle-check"></label> <span>Serviço</span>
+                </li>
+                <li> <label class="circle circle-check "><i class="fa-solid fa-check"></i></label> <span>Data</span></li>
+                <li> <label class="circle">3</label> <span class="actual" >Horário</span></li>
+                <li> <label class="circle">4</label> <span>Informações</span></li>
+                <li> <label class="circle">5</label> <span>Confirmar</span></li>
+            </ul>
+
+            <div class="link-bottom">
+                <h5>Precisa de ajuda?</h5>
+                <a href="suporte.html">Fale conosco</a>
+            </div>
+        </section>
+
+        <!-- FORMULÁRIO -->
+
+        <section id="formulario">
+
+            <div class="title">
+                <h4>Horário</h4>
+            </div>
+
+            <div class="data">
+
+                <section class="data">
+                    <div class="container">
+                        <div class="fila">
+                            <label>
+                                <span>08:00</span>
+                            </label>
+                            <label>
+                                <span>08:30</span>
+                            </label>
+                            <label>
+                                <span>09:00</span>
+                            </label>
+                        </div>
+                        <div class="fila">
+                            <label>
+                                <span>09:30</span>
+                            </label>
+                            <label>
+                                <span>10:00</span>
+                            </label>
+                            <label>
+                                <span>10:30</span>
+                            </label>
+                        </div>
+                        <div class="fila">
+                            <label>
+                                <span>11:00</span>
+                            </label>
+                            <label>
+                                <span>11:30</span>
+                            </label>
+                            <label>
+                                <span>12:00</span>
+                            </label>
+                        </div>
+                        <div class="fila">
+                            <label>
+                                <span>12:30</span>
+                            </label>
+                            <label>
+                                <span>13:00</span>
+                            </label>
+                            <label>
+                                <span>13:30</span>
+                            </label>
+                        </div>
+                        <div class="fila">
+                            <label>
+                                <span>14:00</span>
+                            </label>
+                            <label>
+                                <span>14:30</span>
+                            </label>
+                            <label>
+                                <span>15:00</span>
+                            </label>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+
+            <div class="btn">
+                <a class="btn-1" onclick="history.back(); return false;">Voltar</a>
+                <a href="dados.html" id="btnProximoData" class="btn-2">Próximo</a>
+            </div>
+        </section>
+    </section>
+
+
+    <!-- LOGICA JS -->
+<script>document.addEventListener('DOMContentLoaded', () => {
+    const labelsHora = document.querySelectorAll('.fila label');
+    const btnProximo = document.getElementById('btnProximoData');
+
+    // --- LÓGICA DE SIMULAÇÃO (Fácil de integrar com Backend depois) ---
+    // Simulamos que estes horários já foram marcados por outros cidadãos em Talatona
+    const horariosOcupados = ["09:00", "10:30", "14:00", "15:00"];
+
+    // 1. Estado Inicial do Botão
+    if (btnProximo) {
+        btnProximo.style.opacity = '0.5';
+        btnProximo.style.pointerEvents = 'none';
+    }
+
+    // 2. Processar cada horário na tela
+    labelsHora.forEach(label => {
+        const spanHora = label.querySelector('span');
+        if (!spanHora) return;
+
+        const textoHora = spanHora.textContent.trim();
+
+        // Verificar se está ocupado
+        if (horariosOcupados.includes(textoHora)) {
+            // Aplica visual de bloqueado
+            label.classList.add('ocupado');
+            label.title = "Horário indisponível";
+        } else {
+            // Se estiver livre, adiciona o evento de clique
+            label.addEventListener('click', () => {
+                // Remove seleção anterior
+                labelsHora.forEach(l => l.classList.remove('selecionado'));
+                
+                // Marca o novo
+                label.classList.add('selecionado');
+
+                // Salva no sessionStorage
+                sessionStorage.setItem('yindula_hora', textoHora);
+
+                // Ativa o botão Próximo
+                if (btnProximo) {
+                    btnProximo.style.opacity = '1';
+                    btnProximo.style.pointerEvents = 'auto';
+                }
+            });
+        }
+    });
+});
+</script>
+
+</body>
+
+</html>

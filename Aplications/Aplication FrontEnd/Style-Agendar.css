@@ -1,0 +1,803 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Zalando+Sans+SemiExpanded:ital,wght@0,200..900;1,200..900&display=swap');
+
+:root{
+    --color-primary:#fd3232;
+    --color-primary-variant:rgba(207, 207, 207, 0.1);
+    --color-black:#0f0f0f;
+    --color-on-black:#000000;
+    --color-black-variant:rgb(197, 197, 197);
+    --color-white:#ffffff;
+    --color-light:#ebebebc7;
+    --color-dark: #b1b1b1;
+    --color-check:#4BB543;
+
+    --transition: 0.3s ease-in-out ;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    transition: var(--transition);
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#container {
+    display: flex;
+    background-color: var(--color-white);
+    border-radius: 30px;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.35);
+    position: relative;
+    width: 768px;
+    max-width: 100%;
+    min-height: 520px;
+}
+
+
+#menu {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-primary);
+    width: 30%;
+    height: 520px;
+    text-align: left;
+    color: var(--color-white);
+    padding: 20px 12px;
+    border-radius: 0 60px 60px 0;
+    align-items: center;
+    justify-content: center;
+
+    .actual{
+        text-decoration: underline;
+    }
+}
+
+#menu span{
+    display: flex;
+    align-items: center;
+}
+
+
+#menu .circle{
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    text-align: center;
+    line-height: 24px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#menu .circle-check{
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: var(--color-check);
+    color: var(--color-white);
+    text-align: center;
+    line-height: 24px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#menu ul li{ 
+    display: flex;
+    margin-top: 20px;
+    text-decoration: none;
+    list-style: none;
+    width: 100%;
+    color: var(--color-white);
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 17px;
+    font-weight: 550;
+    transition: var(--transition);
+}
+
+#menu .link-bottom{
+    margin-top: auto;
+    padding: 12px;
+    color: var(--color-white);
+
+    a, h5{
+        color: var(--color-white);
+    }
+}
+
+#menu .link-bottom a{
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+
+    color: var(--color-white);
+}
+
+#menu .link-bottom a:hover{
+    color: var(--color-white);
+    margin-left: 10px;
+}
+
+
+
+/* FORMULÁRIO */
+
+#formulario .icon-check{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+#formulario .icon-check i{
+    display: flex;
+    margin-top: 10%;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-check);
+    border-radius: 50%;
+    color: var(--color-check);
+    padding: 20px;
+    font-size: 2rem;
+    width: 60px;
+    height: 60px;
+}
+
+#formulario .circle{
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    text-align: center;
+    line-height: 24px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#formulario .circle-check{
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: var(--color-check);
+    color: var(--color-white);
+    text-align: center;
+    line-height: 24px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#menu .link-bottom{
+    margin-top: auto;
+    padding: 12px;
+    color: var(--color-black);
+}
+
+#menu .link-bottom a{
+    text-decoration: none;
+    color: var(--color-white);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+#menu .link-bottom a:hover{
+    color: var(--color-dark);
+    margin-left: 10px;
+}
+
+#formulario {
+    width: 70%;
+    padding: 16px;
+}
+
+#formulario .title {
+    text-align: center;
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 25px;
+}
+
+#formulario .links-servicos {
+    display: flex;
+    flex-direction: column;
+    margin: 12px 0;
+}
+
+#formulario .links-servicos a {
+    display: block;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+#formulario .links-servicos a:hover {
+    border:1px solid  var(--color-primary);
+}
+
+.servico-item.selecionado {
+    background-color: var(--color-primary); 
+    color: white !important;
+    transition: all 0.3s ease;
+}
+
+#formulario .links-servicos {
+    display: flex;
+    flex-direction: column;
+    margin: 16px 0;
+    padding-top: 21px;
+}
+
+#formulario .links-servicos a {
+    background: var(--color-white);
+    text-decoration: none;
+    margin: 12px 0;
+    padding: 18px;
+    font-weight: 450;
+    transition: var(--transition);
+    border-radius: 5px;
+    color: var(--color-black);
+}
+
+#formulario .btn {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px  12px;
+    margin-top: 0%;
+    width: 100%;
+    height: auto;
+}
+
+#formulario .btn a {
+    text-decoration: none;
+    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 8px;
+}
+
+#formulario .btn .btn-1 {
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    font-weight: 600;
+    transition: var(--transition);
+    cursor: pointer;
+}
+#formulario .btn .btn-1:hover {
+    background:var(--color-white);
+    color: var(--color-dark);
+    border: none;
+}
+
+#formulario .btn .btn-2 {
+    border: 1px solid var(--color-primary);
+    background: var(--color-primary);
+    color: var(--color-white);
+    transition: var(--transition);
+    font-weight: 600;
+}
+#formulario .btn .btn-2:hover {
+    background: var(--color-primary-variant);
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+
+
+/* DATA */
+
+#formulario .data {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#formulario .data-item {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+    border: 1px solid var(--color-dark);
+    padding: 35px 10px;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+#formulario .data-item input {
+    padding: 12px;
+    border-radius: 8px;
+    outline: none;
+    padding: 10px;
+    border: none;
+    background:transparent ;
+    font-weight: 500;
+}
+
+#formulario .hora-item {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+    border: 1px solid var(--color-dark);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#formulario select  {
+    padding: 12px;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    transition: var(--transition);
+    cursor: pointer;
+    font-weight: 500;
+    background: transparent;
+}
+
+
+
+/* HORARIO */
+
+.data{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 30px;
+    width: 100%;
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        margin: 25px;
+        
+        .fila{
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            gap: 10px;
+        }
+
+        label{
+            background: var(--color-light);
+            border-radius: 8px;
+            color: var(--color-black);
+            font-weight: 550;
+            width: 100%;
+            padding: 10px 40px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+        label:hover{
+            border: 1px solid var(--color-primary);
+            cursor: pointer;
+        }
+    }
+
+ 
+    /* Estilo para Horário Ocupado (Simulação de Banco de Dados) */
+.fila label.ocupado {
+    background-color: #ebebeb !important;
+    color: #999 !important;
+    cursor: not-allowed !important;
+    border: 1px dashed #bbb !important;
+    position: relative;
+    opacity: 0.7;
+}
+
+/* A barra de "indisponível" */
+.fila label.ocupado::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    width: 80%;
+    height: 1.5px;
+    background-color: #ff4d4d; /* Vermelho para erro/ocupado */
+    transform: rotate(-15deg);
+}
+
+/* Horário Selecionado */
+.fila label.selecionado {
+    color: white !important;
+    background-color: var(--color-primary) !important; /* Cor principal */
+    transition: all 0.2s ease;
+    color: var(--color-white);
+}
+}
+
+
+
+/* DADOS PESSOAS */
+
+#formulario .dados-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+#formulario .input-box {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#formulario .input-box .colunas {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#formulario .input-box input {
+    width: 100%;
+    padding: 16px 40px;
+    margin-top: 16px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+    background: var(--color-light);
+    font-weight: 550;
+    color: var(--color-black);
+}
+
+#formulario .input-group {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#formulario .input-group select {
+    margin-top: 10px;
+    margin-bottom:-10px ;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+
+/* Container do Modal (Fundo) */
+.modal-alert {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px); /* Efeito de desfoque no fundo */
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Caixa do Alerta */
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    animation: zoomIn 0.3s ease;
+}
+
+.icon-warning {
+    font-size: 50px;
+    color: #f39c12; /* Cor de alerta */
+    margin-bottom: 15px;
+}
+
+.modal-content h4 {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 22px;
+}
+
+.modal-content p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Botão do Alerta */
+.btn-alert {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: 1px solid var(--color-primary);
+    padding: 10px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-alert:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+}
+
+/* Animação de entrada */
+@keyframes zoomIn {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+
+
+
+
+/* CONFIRMAR DADOS */
+
+#formulario .dados-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-top: 20px;
+}
+#formulario .dados-form p{
+    margin-bottom: 8px;
+}
+
+#formulario .form-selecionados {
+    display: flex;
+    width: 100%;
+    gap: 30px;
+    margin-bottom: 10px;
+    justify-content: center;
+    padding: 10px 30px 10px 30px;
+}
+
+#formulario .form-selecionados .dados-pessoais {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    font-weight: 550;
+}
+
+
+
+
+
+/* CONCLUIDO */
+
+#formulario aside {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#formulario .title .p-title{
+    color: var(--color-check);
+    font-weight: 600;
+}
+
+#formulario .concluido {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    text-align: center;
+}
+
+#formulario .dados-concluido p{
+    font-weight: 600;
+    color: var(--color-check);
+    font-size: 1.5rem;
+}
+
+#formulario .btn-concluido {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+    padding: 20px  12px;
+    width: 90%;
+    height: auto;
+    gap:10px;
+    text-align: center;
+}
+
+#formulario .btn-concluido a {
+    text-decoration: none;
+    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#formulario .btn-concluido .btn-2 {
+    border: 1px solid var(--color-primary);
+    background: var(--color-primary);
+    color: var(--color-white);
+    transition: var(--transition);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+#formulario .btn-concluido .btn-2:hover {
+    background: var(--color-primary-variant);
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+#formulario .btn-concluido .btn-1 {
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    transition: var(--transition);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+#formulario .btn-concluido .btn-1:hover {
+    background:var(--color-dark);
+    color: var(--color-white);
+    border: 1px solid var(--color-dark);
+}
+
+#comprovante-content {
+        border: 1px dashed #0056b3;
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: #f9f9f9;
+        width: 100%;
+    }
+
+    #comprovante-content h3 {
+        border-bottom: 2px solid #0056b3;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        color: #0056b3;
+    }
+
+    .info-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+    }
+
+    .info-label {
+        font-weight: bold;
+        color: #333;
+    }
+
+ .servico-item.selecionado {
+        background-color: var(--color-primary) !important;
+        color: white !important;
+        border-color: var(--color-primary) !important;
+        transform: scale(1.01);
+    }
+
+
+
+@media (max-width: 700px) {
+
+    #container {
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        gap: 20px;
+        backdrop-filter: blur(3px);
+    }
+    
+    #menu {
+        display: flex;
+        width: 100%;
+        height: auto;
+        border-radius: 0;
+    }
+
+    #menu  ul li span{
+        display: none;       
+    }
+
+    #menu  ul{
+        display: flex;
+        align-items: center;      
+        justify-content: center;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+
+    #menu  .link-bottom{
+        display: none;
+    }
+
+    #formulario {
+        width: 100%;
+        padding: 20px;
+    }
+
+    #formulario .links-servilos a {
+        padding: 16px 12px;
+        font-size: 16px;
+    }
+
+    #formulario .data {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+    padding: 20px;
+}
+
+
+#formulario .btn-concluido a {
+    margin-top:10px;
+}
+
+#formulario .data-item, #formulario .hora-item {
+    width: 100%;
+}
+#formulario .input-box .colunas {
+    flex-direction: column;
+}
+#formulario .input-group {
+    display: flex;
+    flex-direction: column;
+}
+#formulario .btn, #formulario .btn a, #formulario .btn-concluido, #formulario .btn-concluido a {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    gap: 10%;
+}
+#formulario .icon-check i{
+    margin-top: 0;
+}
+#formulario aside {
+    margin-right: 0;
+    margin-left: 0;
+}
+}

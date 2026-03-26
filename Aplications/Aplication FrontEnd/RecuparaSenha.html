@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="RecupararSenha.css">
+    <title>Recuperar Senha</title>
+</head>
+
+<body>
+
+    <section class="container">
+
+
+        <div class="top">
+            <a href="index1.html">
+
+            </a>
+        </div>
+
+
+        <div class="form-container">
+
+            <img src="IMG/LOGO YINDULA B.png" class="logo">
+
+            <form id="form">
+
+                <h1 class="form-titulo">Insira seu telefone</h1>
+
+                <input type="tel" name="telefone" id="telefone" placeholder="Telefone" minlength="9" maxlength="9"
+                    required>
+
+                <button>Recuperar Senha</button>
+
+                <div class="links">
+                    <a href="login.html">Iniciar Sessão</a>
+                    <a href="registrar.html">Criar Conta</a>
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    </main>
+
+    <!--
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const API_BASE_URL = 'http://localhost:8080';
+        
+        const telInput = document.getElementById('tel');
+        const nextButton = document.getElementById('nextButton');
+        const recoveryForm = document.getElementById('recoveryForm');
+        const step1 = document.getElementById('step1');
+        const step2 = document.getElementById('step2');
+        const labelPergunta = document.getElementById('labelPergunta');
+
+        // Máscara
+        telInput.addEventListener('input', (e) => e.target.value = e.target.value.replace(/\D/g, ''));
+
+        // 1. VERIFICAR NÚMERO E BUSCAR PERGUNTA
+        nextButton.addEventListener('click', async () => {
+            const tel = telInput.value;
+            if (tel.length !== 9) return alert('Telefone inválido.');
+
+            nextButton.textContent = 'Verificando...';
+            
+            try {
+                // Endpoint que retorna a pergunta associada ao telefone
+                const response = await fetch(`${API_BASE_URL}/auth/get-question?tel=${tel}`);
+                const data = await response.json();
+
+                if (response.ok) {
+                    labelPergunta.textContent = `Pergunta: ${data.pergunta}`;
+                    step1.style.display = 'none';
+                    step2.style.display = 'block';
+                } else {
+                    alert('Número não encontrado.');
+                }
+            } catch (error) {
+                alert('Erro ao conectar ao servidor.');
+            } finally {
+                nextButton.textContent = 'Verificar Número';
+            }
+        });
+
+        // 2. ENVIAR RESPOSTA E NOVA SENHA
+        recoveryForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const payload = {
+                telefone: telInput.value,
+                resposta: document.getElementById('resposta').value,
+                novaSenha: document.getElementById('novaSenha').value
+            };
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/reset-password`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    alert('Senha redefinida com sucesso!');
+                    window.location.href = 'login.html';
+                } else {
+                    alert('Resposta de segurança incorreta.');
+                }
+            } catch (error) {
+                alert('Erro ao processar solicitação.');
+            }
+        });
+    });
+</script>
+-->
+</body>
+
+</html>

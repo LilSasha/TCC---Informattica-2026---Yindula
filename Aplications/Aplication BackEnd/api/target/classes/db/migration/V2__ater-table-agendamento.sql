@@ -1,0 +1,1 @@
+ALTER TABLE agendamento MODIFY numerobi VARCHAR(14) NULL;

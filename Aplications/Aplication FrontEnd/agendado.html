@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGENDAR</title>
+    <link rel="stylesheet" href="Style-Agendar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="icon" href="IMG/Icon.png">
+
+    
+</head>
+
+<body>
+
+    <section id="container">
+
+        <!-- FORMULÁRIO -->
+
+        <section id="formulario">
+           
+            <aside>
+                <div class="icon-check">
+                    <i class="fa fa-check"></i>
+                </div>
+
+                <div class="title">
+                    <p class="p-title">CONCLUÍDO</p>
+                </div>
+
+
+                    <div class="concluido-form">
+
+                        <div class="dados-concluido">
+                            <p class="concluido">Seu agendamento foi realizado com sucesso!</p>
+                        </div>
+
+                        <div class="dados-concluido-info">
+                            <p class="concluido">Caro cidadão, se faça presente no dia agendado e <br> 30  minutos antes do horário marcado.</p>
+
+                        </div>
+                    </div>
+
+                <div class="btn-concluido">
+                    <a href="#" id="btnDownloadPDF" class="btn-1"><i class="fa-solid fa-download"></i> Baixar PDF</a> 
+                    
+                    <a href="Index-Agendar.html" class="btn-2">Novo Agendamento</a>
+
+                    <a href="index1.html" class="btn-1">Voltar ao Inicio</a>
+                </div>
+                
+            </aside>
+
+        </section>
+    </section>
+
+
+    <script>
+
+/**
+ * YINDULA - FINALIZAÇÃO E GERAÇÃO DE PDF
+ */
+document.addEventListener('DOMContentLoaded', () => {
+
+    // 1. Recuperar exatamente como está no script anterior
+    const servico = sessionStorage.getItem('servico_nome') || "Não selecionado";
+    const data = sessionStorage.getItem('data_selecionada') || "";
+    const horario = sessionStorage.getItem('yindula_hora') || "Não definida"; // CHAVE CORRIGIDA AQUI
+    const datagerada = new Date().toLocaleString();
+    
+    // Recuperar o objeto de dados pessoais (yindula_dados)
+    const dadosRaw = sessionStorage.getItem('yindula_dados');
+    const dadosCidadao = dadosRaw ? JSON.parse(dadosRaw) : { 
+        nomeCompleto: "Cidadão", 
+        telefone: "-", 
+        email: "-", 
+        bi: "-", 
+        postoNome: "-" 
+    };
+
+    // 2. Formatar a data para o padrão (DD/MM/YYYY)
+    const dataFormatada = data ? data.split('-').reverse().join('/') : "Data não definida";
+
+    // 3. Função para Gerar o PDF
+    const btnDownload = document.getElementById('btnDownloadPDF');
+
+    if (btnDownload) {
+        btnDownload.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const elementoParaPDF = document.createElement('div');
+            elementoParaPDF.style.padding = "40px";
+            elementoParaPDF.style.fontFamily = "Poppins, sans-serif";
+
+            elementoParaPDF.innerHTML = `
+                <div style="text-align: center; border-bottom: 2px solid #fd3232; padding-bottom: 20px;">
+                    <h1 style="color: #fd3232; margin-bottom: 5px;">YINDULA - ATENDER ANGOLA</h1>
+                    <p style="font-size: 14px; color: #555;">Comprovativo de Agendamento Online</p>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <h3 style="background: #f4f4f4; padding: 10px;">DADOS DO CIDADÃO</h3>
+                    <p><strong>Nome:</strong> ${dadosCidadao.nomeCompleto}</p>
+                    <p><strong>BI:</strong> ${dadosCidadao.bi}</p>
+                    <p><strong>Telefone:</strong> ${dadosCidadao.telefone}</p>
+                    <p><strong>Email:</strong> ${dadosCidadao.email}</p>
+                    
+                    <h3 style="background: #f4f4f4; padding: 10px; margin-top: 20px;">DETALHES DO AGENDAMENTO</h3>
+                    <p><strong>Serviço:</strong> ${servico}</p>
+                    <p><strong>Local:</strong> ${dadosCidadao.postoNome}</p>
+                    <p><strong>Data:</strong> ${dataFormatada}</p>
+                    <p><strong>Horário:</strong> ${horario}</p>
+
+                    <p></p>
+                    <p>Por favor, compareça 30 minutos antes do horário marcado.
+                    </p>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <span style="background: #fff; padding: 10px;">
+                    
+                </div>
+
+                <div style="margin-top: 50px; border-top: 1px solid #ccc; padding-top: 20px; font-size: 12px; color: #777; text-align: center;">
+                    
+                </div>
+            `;
+
+            const opcoes = {
+                margin: 10,
+                filename: `Agendamento_Yindula_${dadosCidadao.nomeCompleto.replace(/\s+/g, '_')}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opcoes).from(elementoParaPDF).save();
+        });
+    }
+});
+
+    </script>
+        
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGENDAR | Data</title>
+    <link rel="stylesheet" href="data-agendar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="icon" href="IMG/Icon.png">
+</head>
+
+<body>
+    
+    <section id="container">
+
+        <!-- MENU -->
+        <section id="menu">
+            <br>
+            <ul>
+                <li> <label class="circle circle-check"><i class="fa-solid fa-check"></i></label> <span>Serviço</span></li>
+                <li> <label class="circle">2</label> <span class="actual">Data</span></li>
+                <li> <label class="circle">3</label> <span>Horário</span></li>
+                <li> <label class="circle">4</label> <span>Informações</span></li>
+                <li> <label class="circle">5</label> <span>Confirmar</span></li>
+            </ul>
+
+            <div class="link-bottom">
+                <h5>Precisa de ajuda?</h5>
+                <a href="suporte.html">Fale conosco</a>
+            </div>
+        </section>
+
+        <!-- FORMULÁRIO -->
+
+        <section id="formulario">
+            
+            <div class="title">
+                <h4>Datas Disponíveis</h4>
+            </div>
+
+            <div class="data">
+                <div class="data-item">
+                    <label for="data">Data</label>
+
+                    <input type="date" id="data" name="data" required>
+                </div>
+            </div>
+
+
+            <div class="btn">
+                <a class="btn-1" onclick="history.back(); return false;">Voltar</a>
+                <a href="hora.html" id="btnProximoData" class="btn-2">Próximo</a>
+            </div>
+        </section>
+    </section>
+
+
+    <!-- LOGICA JS -->
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const inputData = document.getElementById('data');
+    const btnProximo = document.getElementById('btnProximoData');
+
+    // 1. FUNÇÃO PARA CALCULAR O PRÓXIMO DIA ÚTIL (Após 10 dias)
+    function calcularDataMinima(diasParaSomar) {
+        let data = new Date(); // Data de hoje
+        let diasContados = 0;
+
+        while (diasContados < diasParaSomar) {
+            data.setDate(data.getDate() + 1);
+            let diaSemana = data.getDay(); // 0 = Domingo, 6 = Sábado
+            
+            // Só conta se for dia de semana (Segunda a Sexta)
+            if (diaSemana !== 0 && diaSemana !== 6) {
+                diasContados++;
+            }
+        }
+
+        // Se a data final cair num fim de semana (por segurança), pula para segunda
+        if (data.getDay() === 0) data.setDate(data.getDate() + 1);
+        if (data.getDay() === 6) data.setDate(data.getDate() + 2);
+
+        return data.toISOString().split('T')[0]; // Retorna no formato YYYY-MM-DD
+    }
+
+    // 2. APLICA A RESTRIÇÃO NO INPUT
+    const dataMinima = calcularDataMinima(10);
+    inputData.setAttribute('min', dataMinima);
+    inputData.value = dataMinima; // Sugere a primeira data disponível
+
+    // 3. VALIDAÇÃO AO MUDAR A DATA
+    inputData.addEventListener('change', () => {
+        const dataSelecionada = new Date(inputData.value);
+        const diaSemana = dataSelecionada.getDay();
+
+        if (diaSemana === 0 || diaSemana === 6) {
+            alert("O posto de atendimento em Talatona não funciona aos fins de semana. Por favor, escolha um dia útil.");
+            inputData.value = dataMinima;
+        } else {
+            sessionStorage.setItem('data_selecionada', inputData.value);
+        }
+    });
+
+    // 4. AÇÃO DO BOTÃO PRÓXIMO
+    btnProximo.addEventListener('click', (e) => {
+        if (!inputData.value) {
+            e.preventDefault();
+            alert("Por favor, selecione uma data válida.");
+        } else {
+            sessionStorage.setItem('data_selecionada', inputData.value);
+        }
+    });
+});
+    </script>
+
+</body>
+
+</html>

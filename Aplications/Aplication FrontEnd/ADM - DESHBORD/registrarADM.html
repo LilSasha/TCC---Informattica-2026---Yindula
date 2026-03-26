@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="registrarADM.css">
+    <title>Login - API</title>
+</head>
+
+<body>
+    <!-- <div class="box">
+        <h2>Cadastro</h2>
+        <form action="">
+            <input type="text" class="nome" name="nome" placeholder="Primeiro nome">
+            <input type="email" class="email" name="email" placeholder="Email">
+            <input type="tel" class="telefone" name="telefone" placeholder="Telefone">
+            <input type="password" class="senha" name="password" placeholder="Senha">
+            <button>Cadastrar</button>
+        </form>
+    </div> -->
+
+    <div class="container" id="container">
+
+        <div class="form-container registrar">
+
+            <form id="form">
+                <h1>Criar nova conta</h1>
+
+                <input type="text" name="name" id="name" placeholder="Name" required>
+                <input type="tel" name="telefone" id="telefone" placeholder="Telefone" minlength="9" maxlength="9"
+                    required>
+                <input type="email" name="email" id="email" placeholder="Email" required>
+
+                <div class="senhas">
+                    <input type="password" name="senha" id="senha" placeholder="Senha" required>
+
+                    <input type="password" name="ConfirSenha" id="ConfirSenha" placeholder="Confirmar Senha" required>
+                </div>
+
+                <div class="conta">
+                    <label>Já tenho conta <a href="loginADM.html"> entrar</a></label>
+                </div>
+                <button>criar</button>
+            </form>
+
+        </div>
+
+        <div class="toogle-panel right">
+
+            <div class="logo">
+                <a href="index1.html"><img src="IMG/LOGO YINDULA.png"></a>
+            </div>
+
+            <h1>Olá, ADM!</h1>
+
+            <p>Se tiver uma conta, clique no botão abaixo para entrar</p>
+
+            <a href="loginADM.html" class="toogBtn" id="login">Iniciar Sessão</a>
+        </div>
+    </div>
+</body>
+
+<script defer>
+    const formulario = document.getElementById('form');
+const Inome = document.getElementById('name');
+const Itelefone = document.getElementById('telefone');
+const Isenha = document.getElementById('senha');
+const Iemail = document.getElementById('email');
+const SenhaI = document.getElementById('senha');
+const ConfirSenhaI = document.getElementById('ConfirSenha');
+
+
+const validarSenhas = () => {
+    const senha = SenhaI.value;
+    const ConfirSenha = ConfirSenhaI.value;
+
+    if (ConfirSenha.length > 0) {
+        if (senha === ConfirSenha) {
+            ConfirSenhaI.style.border = "2px solid #2ecc71"; // Verde se igual
+        } else {
+            ConfirSenhaI.style.border = "2px solid #fd3232"; // Vermelho se diferente
+        }
+    } else {
+        ConfirSenhaI.style.border = "none";
+    }
+};
+SenhaI.addEventListener('input', validarSenhas);
+ConfirSenhaI.addEventListener('input', validarSenhas);
+
+
+function Cadastrar() {
+    // ENDEREÇO DA NOSSA API
+    fetch("http://localhost:8080/cadastrar",
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+
+            method: "POST",
+            body: JSON.stringify({
+                nome: Inome.value,
+                telefone: Itelefone.value,
+                email: Iemail.value,
+                senha: Isenha.value
+            })
+
+        })
+
+        .then(function (res) { console.log(res) })
+        .catch(function (res) { console.log(res) })
+};
+
+function limpar() {
+    Inome.value = "",
+    Itelefone.value = "",
+    Iemail.value = "",
+    Isenha.value = "",
+    ConfirSenhaI.value="";
+}
+
+// Altere a parte do .then no seu script.js:
+
+formulario.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    Cadastrar();
+    limpar();
+
+});
+</script>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="loginADM.css">
+    <title>Entrar</title>
+</head>
+
+<body>
+
+    <div class="container" id="container">
+
+        <div class="form-container registrar">
+
+            <form action="#">
+                <h1>Iniciar Sessão</h1> <br>
+
+                <span>Iniciar sessão com email ou telefone e senha</span>
+
+                <input type="email" name="email" id="email" placeholder="Email" required>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+
+                <div class="lembrar-senha">
+                    <label>
+                        <input type="checkbox" id="remember-me">
+                        Lembrar senha
+                    </label>
+
+                    <a href="RecuparaSenhaADM.html">Perdi a senha</a>
+                </div>
+
+                <button id="btnLogin">Iniciar sessão</button>
+            </form>
+
+        </div>
+
+        <div class="toogle-panel right">
+
+            <div class="logo">
+                <a href="index1.html"><img src="IMG/LOGO YINDULA.png"></a>
+            </div>
+
+            <h1>Bem-Vindo de volta!</h1>
+
+            <p>Se não tiver uma conta, clica no botão abaixo<br> para  criar já  uma conta.</p>
+
+            <a href="registrarADM.html" class="toogBtn" lass="hidden" id="login">Criar conta</a>
+        </div>
+
+    </div>
+
+
+
+    <script defer>
+        const localhost = "http://localhost:8080/cadastrar/login";
+        const formulario = document.getElementById('form');
+        const Isenha = document.getElementById('senha');
+        const Iemail = document.getElementById('email');
+        const btnLogin = document.getElementById('btnLogin');
+        
+
+        function Cadastrar() {
+            // ENDEREÇO DA NOSSA API
+            fetch(localhost,
+                {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+
+                    method: "POST",
+                    body: JSON.stringify({
+                        email: Iemail.value,
+                        senha: Isenha.value
+                    })
+
+                })
+
+                .then(function (res) { console.log(res) })
+                .catch(function (res) { console.log(res) })
+        };
+
+        function limpar() {
+                Iemail.value = "",
+                Isenha.value = "";
+        }
+
+        // Altere a parte do .then no seu script.js:
+
+        formulario.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            Cadastrar();
+            limpar();
+        });
+
+         // 4. Ação do botão "Próximo"
+        btnLogin.addEventListener('click', (event) => {
+                window.location.href = 'index.html';
+                event.preventDefault(); 
+              
+            }
+        );
+    </script>
+</body>
+
+</html>

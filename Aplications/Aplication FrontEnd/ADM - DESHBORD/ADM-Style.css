@@ -1,0 +1,427 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+
+:root {
+    --color-primary: #fd3232;
+    --color-primary-variant: #991313;
+    --Color-top-nav: #c4969670;
+    --color-black: #0f0f0f;
+    --color-on-black: #000000;
+    --color-black-variant: rgb(197, 197, 197);
+    --color-white: #ffff;
+    --color-light: #d6d6d6;
+    --color-dark: #575757;
+    --color-adm: #111827;
+
+    --transition: 0.4s ease;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    transition: all var(--transition);
+}
+
+body {
+    width: 100%;
+    background: var(--color-white);
+    position: relative;
+    display: flex;
+}
+
+
+/* INICIO STYLE MENU */
+#menu {
+    background: var(--color-primary-variant);
+    width: 300px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    /* CORREÇÃO: Menu sempre por cima */
+}
+
+#menu .logo a {
+    display: flex;
+    align-items: center;
+    color: var(--color-white);
+    padding: 30px 0 0 30px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#menu .logo img {
+    width: 35px;
+    margin-right: 15px;
+}
+
+#menu .itens {
+    margin-top: 40px;
+}
+
+#menu .itens ul {
+    padding: 0;
+}
+
+#menu .itens ul li {
+    list-style: none;
+    padding: 15px 0;
+    transition: all 0.3s ease;
+    color: var(--color-white);
+    font-weight: 510;
+}
+
+#menu .itens ul li:hover {
+    background: var(--Color-top-nav);
+    cursor: pointer;
+    border-radius: 40px;
+}
+
+#menu .itens ul li:nth-child(1) {
+    border-left: 4px solid #ffffff;
+}
+
+#menu .itens ul li i {
+    color: var(--color-white);
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 14px;
+    margin: 0 10px 0 25px;
+}
+
+#menu .itens ul li:hover i,
+#menu .itens ul li:hover a {
+    color: var(--color-white);
+}
+
+#menu .itens ul li a {
+    text-decoration: none;
+    color: var(--color-white);
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+/* FIM STYLE MENU */
+
+/* INICIO STYLE INTERFACE */
+
+#menu-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+    color: #253047;
+    font-size: 20px;
+    margin-right: 10px;
+    transition: 0.1s ease;
+
+    display: none;
+}
+
+
+#interface {
+    width: calc(100% - 300px);
+    margin-left: 300px;
+    position: relative;
+}
+
+/* BARRA DE NAVEGAÇÃO SUPERIOR */
+#interface .navegation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    /* CRÍTICO: Alinha 'nav-left' na esquerda e 'profile' na direita */
+    background: var(--color-white);
+    padding: 15px 30px;
+    border-bottom: 7px solid var(--color-adm);
+    position: fixed;
+    width: calc(100% - 300px);
+    z-index: 10;
+}
+
+/* NOVO: Agrupa o botão do menu e a pesquisa */
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+/* Pesquisa */
+#interface .navegation .search {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 14px;
+    border: 1px solid #a0a0a0;
+    border-radius: 10px;
+}
+
+#interface .navegation .search i {
+    margin-right: 14px;
+}
+
+#interface .navegation .search input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+/* Perfil (Sino e Foto) */
+#interface .navegation .profile {
+    display: flex;
+    align-items: center;
+    /* margin-left: auto; REMOVIDO: justify-content: space-between já faz isso */
+}
+
+#interface .navegation .profile i {
+    font-size: 1.2rem;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+#interface .navegation .profile img {
+    width: 40px;
+    /* CORRIGIDO: Tamanho adequado */
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+/* TITULO - DASHBOARD */
+.i-name {
+    color: var(--color-black);
+    padding: 30px 30px 0 30px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 70px;
+}
+
+/* CARTÕES */
+.value {
+    width: 100%;
+    padding: 30px 30px 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.value .val-box {
+    background: var(--color-light);
+    width: 250px;
+    padding: 16px 20px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+}
+
+.value .val-box:hover {
+    box-shadow: 5px 5px 5px 0px var(--color-black-variant);
+    transition: 0.5s ease;
+}
+
+.value .val-box i {
+    font-size: 25px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    background: #b0c5f3;
+    text-align: center;
+    margin-right: 15px;
+}
+
+/* Cores dos ícones */
+.value .val-box:nth-child(1) i {
+    background: #007fe73e;
+}
+
+.value .val-box:nth-child(2) i {
+    background: #a2f7a9;
+}
+
+.value .val-box:nth-child(3) i {
+    background: #2660ff8f;
+}
+
+.value .val-box:nth-child(4) i {
+    background: #ff0000c4;
+}
+
+.value .val-box span {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-black);
+}
+
+/* TABELAS */
+.board {
+    width: 95%;
+    margin: 30px 0 30px 30px;
+    overflow: auto;
+    background: var(--color-white);
+    border-radius: 10px;
+}
+
+/* ... estilos de tabela mantidos ... */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+thead th {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 300;
+    background: var(--color-adm);
+    text-align: start;
+    padding: 15px;
+    color: #909aaf;
+}
+
+tbody td {
+    padding: 15px;
+}
+.name-size {
+    font-size: 1.1rem;
+    font-weight: 550;
+    margin-left: 10px;
+}
+
+.tipo-servico {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.activo p {
+    background: #a2f7a9;
+    padding: 2px 10px;
+    display: inline-block;
+    border-radius: 40px;
+    color: #2b2b2b;
+}
+
+.realizado p {
+    background: #2660ff8f;
+    padding: 2px 10px;
+    display: inline-block;
+    border-radius: 40px;
+    color: #2b2b2b;
+}
+
+.cancelado p {
+    background: var(--color-primary);
+    padding: 2px 10px;
+    display: inline-block;
+    border-radius: 40px;
+    color: #2b2b2b;
+}
+
+
+/* MEDIA QUERIES (Layout Responsivo) */
+
+@media (max-width: 990px) {
+
+    #menu {
+        width: 270px;
+        position: fixed;
+        left: -270px;
+        transition: 0.3s ease;
+    }
+
+    #menu.active {
+        left: 0px;
+    }
+
+    #menu-btn {
+        display: initial;
+    }
+
+    #interface {
+        width: 100%;
+        margin-left: 0px;
+        transition: 0.3s ease;
+    }
+
+    #menu.active+#interface {
+        width: calc(100% - 270px);
+        margin-left: 270px;
+        transition: 0.3s ease;
+    }
+
+    /* Ajuste na navegação para mobile */
+    #interface .navegation {
+        width: 100%;
+        /* O padding será ajustado abaixo se for tela muito pequena */
+    }
+
+    /* CORREÇÃO: Layout 2x2 para cartões (Tablets) */
+    .value {
+        padding: 30px 30px 0 30px;
+        justify-content: space-around;
+        /* Distribui o espaço entre os 2 cartões */
+        gap: 10px;
+    }
+
+    .value .val-box {
+        padding: 20px 30px;
+        margin: 15px 0;
+        width: calc(50% - 20px);
+        /* 2 cartões por linha, com 20px de espaço no total */
+    }
+
+    .board {
+        width: 92%;
+        padding: 0;
+        overflow-x: auto;
+    }
+
+    .i-name {
+        text-align: center;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    /* CORREÇÃO: Alinhamento da barra de navegação quando o menu mobile está aberto */
+    #interface .navegation {
+        padding: 15px;
+    }
+
+    #interface .navegation .search input {
+        width: 150px;
+    }
+
+    .i-name {
+        padding: 30px 15px 0 15px;
+    }
+
+    /* Força 1 cartão por linha em telas muito pequenas (Colunas) */
+    .value {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .value .val-box {
+        padding: 20px;
+        width: 100%;
+        align-items: center;
+        margin: 15px 0;
+    }
+
+    .board {
+        margin: 30px 15px 30px 14px;
+    }
+
+}

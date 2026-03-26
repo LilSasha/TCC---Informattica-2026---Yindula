@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yindula - Atender Angola</title>
+    <link rel="icon" href="IMG/Icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <link rel="stylesheet" href="Index-style.css">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+</head>
+
+<body>
+
+    <!-- BARRA DE CIMA -->
+    <nav>
+        <a href="index1.html"> <img src="IMG/LOGO YINDULA BRANCA.png" alt=""></a>
+
+        <div class="navegation">
+            <ul>
+                <i id="menu-close-icon" class="fa-regular fa-circle-xmark"></i>
+                <li><a href="index1.html" class="link">Iniciar</a></li>
+                <li><a href="suporte.html" class="link active">Suporte</a></li>
+                <li class="actual"><a href="sobre.html" class="link">Sobre</a></li>
+                <li><a href="contact.html" class="link">Contacto</a></li>
+            </ul>
+            <i id="menu-btn-icon" class="fas fa-bars "></i>
+
+        </div>
+    </nav>
+
+    <!-- PAG INICIAL -->
+    <section id="sobre-home">
+        <h2>Sobre <label>YindulaAO</label> </h2>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section id="sobre-container">
+
+        <div class="TOP">
+
+            <div class="sobre-text-1">
+                <h2>Como Surgiu o projecto YindulaAO?</h2> <br>
+                <p>O projeto YindulaAO nasceu a partir da observação de diversas dificuldades enfrentadas diariamente
+                angolanos, especialmente na província de Luanda, durante o processo de aquisição do <i><b>Bilhete de Identidade</b></i>.</p>
+
+                <p>Problemas como filas longas, burocracia excessiva, aglomerações, falhas no sistema e longos tempos de
+                espera tornaram-se uma preocupação constante.</p>
+
+                <p>Assim, os estudantes do Instituto IMEG decidiram criar o YindulaAO, um sistema digital de agendamento
+                de atendimentos para o processo de identificação.</p> <br>
+            </div>
+
+            <div class="IMG">
+                <img src="IMG/C.png" alt="">
+            </div>
+
+        </div>
+        
+        <div class="TOP">
+
+            <div class="IMG">
+                <img src="IMG/A.jpeg" height="250px" class="left">
+            </div>
+
+            <div class="sobre-text-1">
+                <h2>Evolução e Objectivo</h2> <br>
+                <p>O projeto YindulaAO nasceu a partir da observação de diversas dificuldades enfrentadas diariamente
+                angolanos, especialmente na província de Luanda, durante o processo de aquisição do <i><b>Bilhete de Identidade</b></i>.</p>
+
+                <p>Oferecer uma plataforma tecnológica que simplifique o acesso aos serviços de identificação em Angola. Ser
+                reconhecido como um modelo inovador de gestão de atendimento público digital em Angola. Reduzir o tempo
+                de espera no processo de emissão do Bilhete de Identidade.</p>
+            </div> 
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER - RODAPE -->
+    <footer>
+
+        <div class="footer-col">
+            <a href="#"><img src="IMG/LOGO YINDULA BRANCA.png" class="img-BI" width="200px"></a>
+            <br><br>
+        </div>
+
+
+        <div class="footer-col">
+            <h3>Documentos e Registros</h3>
+
+            <a href="#" class="links">
+                <li>Registro Civil e Nascimento</li>
+            </a>
+            <a href="#" class="links">
+                <li>Certidões e Declarações</li>
+            </a>
+            <a href="#" class="links">
+                <li>Portal da Justiça</li>
+            </a>
+        </div>
+
+        <div class="footer-col">
+            <h3>Apoio e Informações</h3>
+
+            <a href="contact.html" class="links">
+                <li>Contactos Úteis</li>
+            </a>
+            <a href="suporte.html" class="links">
+                <li>Suporte ao Cidadão</li>
+            </a>
+        </div>
+        <div class="copyright">
+            <p>Copyright &copy; 2025 Todos os direitos reservados | Web Site para agender atendimentos</p>
+        </div>
+
+    </footer>
+
+
+
+    <script>
+        $('#menu-btn-icon').click(function () {
+            $('nav .navegation ul').addClass('active')
+        });
+
+        $('#menu-close-icon').click(function () {
+            $('nav .navegation ul').removeClass('active')
+        });
+    </script>
+
+    <script>
+        /**
+ * YINDULA - SOBRE JS
+ * Focado em: Navegação e Efeitos de Revelação (Scroll Reveal)
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    // 1. MENU MOBILE (Mantendo o padrão das outras páginas)
+    const menuBtn = document.getElementById('menu-btn-icon');
+    const closeBtn = document.getElementById('menu-close-icon');
+    const navUl = document.querySelector('nav .navegation ul');
+
+    if (menuBtn) {
+        menuBtn.addEventListener('click', () => navUl.classList.add('active'));
+    }
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => navUl.classList.remove('active'));
+    }
+
+    // 2. EFEITO DE REVELAÇÃO AO DESCER A PÁGINA (Scroll Reveal)
+    // Isso faz com que os blocos de texto e imagem apareçam suavemente
+    const observerOptions = {
+        threshold: 0.2
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+            }
+        });
+    }, observerOptions);
+
+    // Aplicando o efeito nas seções de texto e imagem
+    document.querySelectorAll('.TOP').forEach(secao => {
+        secao.style.opacity = "0";
+        secao.style.transform = "translateY(30px)";
+        secao.style.transition = "all 0.8s ease-out";
+        observer.observe(secao);
+    });
+
+});
+    </script>
+</body>
+
+</html>

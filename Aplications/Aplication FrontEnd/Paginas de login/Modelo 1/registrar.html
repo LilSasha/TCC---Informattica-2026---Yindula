@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="registrar.css">
+    <title>Registrar-se</title>
+</head>
+
+<body>
+
+    <div class="container" id="container">
+
+        <div class="form-container registrar">
+
+            <form action="#">
+                <h1>Registrar-se</h1> <br>
+
+                <span>Use seu email para criar uma conta</span>
+
+                <input type="text" name="name" id="name" placeholder="Name" required>
+                <input type="tel" name="telefone" id="telefone" placeholder="Telefone" minlength="9" maxlength="9"
+                    required>
+                <input type="password" name="senha" id="senha" placeholder="Senha" required>
+                <input type="password" name="ConfirSenha" id="ConfirSenha" placeholder="Confirmar Senha" required>
+
+                <div class="conta">
+                    <label>Já tenho conta <a href="login.html"> entrar</a></label>
+                </div>
+
+                <button>Registrar</button>
+            </form>
+
+        </div>
+
+        <div class="toogle-panel right">
+
+            <div class="logo">
+                <a href="index1.html"><img src="Icon.png"></a>
+            </div>
+
+            <h1>Bem-Vindo de volta!</h1>
+
+            <p>Se tiver uma conta, clique no botão abaixo para entrar</p>
+
+            <a href="login.html" class="toogBtn" id="login">Entrar</a>
+        </div>
+
+    </div>
+
+
+    <script>
+        const SenhaI = document.getElementById('senha');
+        const ConfirSenhaI = document.getElementById('ConfirSenha');
+
+
+        const validarSenhas = () => {
+            const senha = SenhaI.value;
+            const ConfirSenha = ConfirSenhaI.value;
+
+            if (ConfirSenha.length > 0) {
+                if (senha === ConfirSenha) {
+                    ConfirSenhaI.style.border = "2px solid #2ecc71"; // Verde se igual
+                } else {
+                    ConfirSenhaI.style.border = "2px solid #e74c3e"; // Vermelho se diferente
+                }
+            } else {
+                ConfirSenhaI.style.border = "none";
+            }
+        };
+        SenhaI.addEventListener('input', validarSenhas);
+        ConfirSenhaI.addEventListener('input', validarSenhas);
+    </script>
+
+
+</body>
+
+</html>
